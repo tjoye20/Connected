@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :users do
-    resources :interests, controller: "UserInterests", only: [:index, :create, :destroy]
-  end
-
-  resources :interests do
-    resources :users, controller: "InterestsUser", only: [:index, :create, :destroy]
-  end
-
+  resources :users
+  
   resources :sessions, only: [:new, :create, :destroy]
 
   # we use a foreign key in the conversations table
