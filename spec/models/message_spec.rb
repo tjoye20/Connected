@@ -7,9 +7,6 @@ describe "message model" do
   let(:msg1) { Message.create(conversation_id: convo.id, body: "Hey, wassup?", user_id: user.id, read: true)}
   let(:msg2) { Message.create(conversation_id: convo.id, body: "Chilling. What are you up to?", user_id: user2.id)}
 
-  let(:saved_user) { User.find_by(username:"jay") }
-  let(:saved_user2) { User.find_by(username:"jess") }
-
   it "belongs to a conversation" do
     expect(msg1.conversation_id).to eq convo.id
   end
@@ -27,7 +24,7 @@ describe "message model" do
   end
 
   it "has a receiver" do
-    expect(Conversation.find(msg1.conversation_id).recipient_id).to eq user2.id  
+    expect(Conversation.find(msg1.conversation_id).recipient_id).to eq user2.id
   end
 
 end
