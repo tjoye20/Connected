@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe "interest model" do
+  let(:user) { User.create!(username:"jay", email:"jay@gmail.com", password: "1234") }
   let(:interest) { Interest.create(name: "Sports") }
   let(:saved_interest) { Interest.find_by(name: "Sports")}
 
@@ -17,4 +18,8 @@ describe "interest model" do
     expect(interest.name).to eq "Music"
   end
 
+  it "can add an interest to a user" do
+    user.interests.create(name: interest.name)
+    expect(user.interests.first.name).to eq interest.name
+  end
 end
