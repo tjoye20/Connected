@@ -22,6 +22,6 @@ test:
 
 production:
   <<: *default
-  database: date_spec_prod
+  database: connected_prod
   username: <%= ENV['USERNAME'] %>
   password: <%= ENV['CONNECTED_DATABASE_PASSWORD'] %>
