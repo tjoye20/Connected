@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20160902225222) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "interests", force: :cascade do |t|
     t.string   "name",       null: false
     t.string   "image_url"
@@ -22,8 +25,8 @@ ActiveRecord::Schema.define(version: 20160902225222) do
   create_table "interests_users", id: false, force: :cascade do |t|
     t.integer "interest_id", null: false
     t.integer "user_id",     null: false
-    t.index ["interest_id"], name: "index_interests_users_on_interest_id"
-    t.index ["user_id"], name: "index_interests_users_on_user_id"
+    t.index ["interest_id"], name: "index_interests_users_on_interest_id", using: :btree
+    t.index ["user_id"], name: "index_interests_users_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
