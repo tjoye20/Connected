@@ -10,7 +10,7 @@ describe "message model" do
   let(:saved_user) { User.find_by(username:"jay") }
   let(:saved_user2) { User.find_by(username:"jess") }
 
-  it "has a conversation" do
+  it "belongs to a conversation" do
     expect(msg1.conversation_id).to eq convo.id
   end
 
@@ -23,7 +23,11 @@ describe "message model" do
   end
 
   it "says whether or not it's been read" do
-    expect(msg1.read).to eq true 
+    expect(msg1.read).to eq true
+  end
+
+  it "has a receiver" do
+    expect(Conversation.find(msg1.conversation_id).recipient_id).to eq user2.id  
   end
 
 end
