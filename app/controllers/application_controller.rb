@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user
     if !current_user
-      redirect_to signin_path, notice: "You must be signed in to do that!"
+      redirect_to login_path, notice: "You must be signed in to do that!"
     end
   end
 
