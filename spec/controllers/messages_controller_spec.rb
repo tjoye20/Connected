@@ -5,7 +5,6 @@ RSpec.describe MessagesController, type: :controller do
   let!(:user2) { User.create!(username:"jess", email:"jess@gmail.com", password: "password") }
   let!(:convo) { Conversation.create(sender_id: user.id, recipient_id: user2.id) }
   let(:message) { Message.create!(conversation_id: convo.id, body: "Hey, wassup?", user_id: user.id, read: true) }
-  # let(:message2) { Message.create!(conversation_id: convo.id, body: "Chilling. What are you up to?", user_id: user2.id) }
   let!(:new_message) { Conversation.find(convo.id).messages.create!(conversation_id: convo.id, body: "Hey T, wassup?", user_id: user2.id)}
   let!(:all_messages) { Conversation.find(convo.id).messages }
 

@@ -7,7 +7,7 @@ RSpec.describe ConversationsController, type: :controller do
   before(:each) do
     session[:user_id] = user.id
   end
-  let(:existing_convo) { Conversation.create!(sender_id: user2.id, recipient_id: user3.id) }
+  let!(:existing_convo) { Conversation.create(sender_id: user2.id, recipient_id: user3.id) }
   let!(:new_convo) { Conversation.new}
   let(:all_convos) {Conversation.all}
   let(:all_users) {User.all}
@@ -30,7 +30,7 @@ RSpec.describe ConversationsController, type: :controller do
       it "responds with status code 302" do
         expect{post(:create, params)}.to change(Conversation, :count).by(1)
         expect(response).to have_http_status 302
-        expect(response).to redirect_to conversation_messages_path(all_convos.first)
+        expect(response).to redirect_to conversation_messages_path(all_convos.last)
       end
     end
 
@@ -39,10 +39,8 @@ RSpec.describe ConversationsController, type: :controller do
         {sender_id: user3.id, recipient_id: user2.id}
       end
       it "responds with status code 302" do
-        #not sure how to test this. It shouldn't change the count.
-        expect{post(:create, params)}.to change(Conversation, :count).by(1)
+        expect{post(:create, params)}.to change(Conversation, :count).by(0)
         expect(response).to have_http_status 302
-        # expect(assigns(:existing_convo)).to eq new_convo
         expect(response).to redirect_to conversation_messages_path(existing_convo.id)
       end
     end
