@@ -14,9 +14,11 @@ RSpec.describe ConversationsController, type: :controller do
 
 
   describe "GET #index" do
-    xit "responds with status code 200" do
+    it "responds with status code 200" do
       get :index
-      #since no content is displayed, rspec can't test it.
+      expect(response).to be_success
+      expect(response).to have_http_status 200
+      # expect(response).to render_template(:index)
     end
   end
 

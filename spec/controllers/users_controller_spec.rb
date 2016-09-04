@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
 
-let(:user) { User.create!(username:"jay", email:"jay@gmail.com", password: "1234") }
+let(:user) { User.create!(username: "jay", email: "jay@gmail.com", password: "1234") }
 
   describe "GET #index" do
     before(:each) do
@@ -12,7 +12,7 @@ let(:user) { User.create!(username:"jay", email:"jay@gmail.com", password: "1234
       get :index
       expect(response).to be_success
       expect(response).to have_http_status 200
-      # expect(response).to render_template(:index)
+      expect(response).to render_template(:index)
     end
   end
 
@@ -22,7 +22,7 @@ let(:user) { User.create!(username:"jay", email:"jay@gmail.com", password: "1234
       expect(response).to be_success
       expect(assigns(:user)).to be_a_new User
       expect(response).to have_http_status 200
-      # expect(response).to render_template(:new)
+      expect(response).to render_template(:new)
     end
   end
 
@@ -32,7 +32,7 @@ let(:user) { User.create!(username:"jay", email:"jay@gmail.com", password: "1234
       expect(response).to be_success
       expect(assigns(:user)).to eq(user)
       expect(response).to have_http_status 200
-      # expect(response).to render_template(:show)
+      expect(response).to render_template(:show)
     end
   end
 
@@ -42,7 +42,7 @@ let(:user) { User.create!(username:"jay", email:"jay@gmail.com", password: "1234
       expect(response).to be_success
       expect(assigns(:user)).to eq(user)
       expect(response).to have_http_status 200
-      # expect(response).to render_template(:edit)
+      expect(response).to render_template(:edit)
     end
   end
 
@@ -68,7 +68,7 @@ let(:user) { User.create!(username:"jay", email:"jay@gmail.com", password: "1234
       it "responds with status code 200" do
         post :create, params
         expect(response).to have_http_status 200
-        # expect(response).to render_template(:new)
+        expect(response).to render_template(:new)
       end
     end
   end
@@ -102,17 +102,19 @@ let(:user) { User.create!(username:"jay", email:"jay@gmail.com", password: "1234
         end
         it "responds with a status 302" do
         expect(response).to have_http_status 302
-        expect(user.bio).to_not eq params[:bio]
+        expect(user.email).to_not eq params[:email]
         expect(response).to redirect_to new_session_path
       end
     end
   end
 
   describe "DELETE #destroy" do
-    it "logs out user, clears the session, and sets active to false" do
+    before(:each) do
+      session[:user_id] = user.id
+    end
+    it "logs out user and clears the session" do
       delete :destroy, {id: user.id}
       expect(session[:user_id]).to eq nil
-      expect(assigns(:user)).to eq nil
       expect(response).to redirect_to root_path
     end
   end
