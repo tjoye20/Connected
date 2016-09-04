@@ -1,7 +1,8 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 
-# run be rake db:reset whenever you're updating the seed data
+
+# run be rake db:reset whenever you make updates to the seed data
 
 
 user1 = User.create(username: 'holly123', email: "holly@gmail.com", password: "abc123")
