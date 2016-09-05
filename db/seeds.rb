@@ -11,12 +11,12 @@ user3 = User.create(username: 'Ross', email: "ross123@hotmail.com", password_dig
 User.create(username: 'Charlie', email: "charlie@gmail.com", password_digest: "abc123")
 User.create(username: 'Lucy', email: "bluedresses4va@gmail.com", password_digest: "abc123")
 
-i1 = Interest.create(name: "Sports")
-i2 = Interest.create(name: "Music")
-i3 = Interest.create(name: "Food")
-Interest.create(name: "Fitness")
-Interest.create(name: "Politics")
-Interest.create(name: "Books")
+i1 = Interest.create(name: "Sports", image_url: "https://www.insidescience.org/sites/default/files/130305_Sports_top.jpg")
+i2 = Interest.create(name: "Music", image_url: "https://static.pexels.com/photos/1591/technology-music-sound-things.jpg")
+i3 = Interest.create(name: "Food", image_url: "http://isabelscharenberg.com/sites/default/files/styles/large/public/Joe%20Holdsworth/JH_Dark_Food_29.jpg?slideshow=true&slideshowAuto=false&slideshowSpeed=4000&speed=350&transition=elastic")
+Interest.create(name: "Fitness", image_url: "http://erichuner.com/wp-content/uploads/2015/02/black-and-white-fitness-pic-121413.jpg")
+Interest.create(name: "Politics", image_url: "http://a.abcnews.com/images/Politics/GTY_capitol_kab_141015_16x9_992.jpg")
+Interest.create(name: "Books", image_url: "https://obsessivebookworm.files.wordpress.com/2011/01/books.jpg")
 
 user1.interests.create(name: "Sports")
 user1.interests.create(name: "Music")
