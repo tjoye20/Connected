@@ -5,11 +5,11 @@
 # run be rake db:reset whenever you make updates to the seed data
 
 
-user1 = User.create(username: 'holly123', email: "holly@gmail.com", password: "abc123", image_url: Faker::Avatar.image)
-user2 = User.create(username: 'rachel345', email: "iliketoshop@gmail.com", password_digest: "abc123", image_url: Faker::Avatar.image)
-user3 = User.create(username: 'Ross', email: "ross123@hotmail.com", password_digest: "abc123", image_url: Faker::Avatar.image)
-User.create(username: 'Charlie', email: "charlie@gmail.com", password_digest: "abc123", image_url: Faker::Avatar.image)
-User.create(username: 'Lucy', email: "bluedresses4va@gmail.com", password_digest: "abc123", image_url: Faker::Avatar.image)
+user1 = User.create(username: 'holly123', email: "holly@gmail.com", password: "abc123", image_url: Faker::Avatar.image, city: "Austin", state: "Texas", zipcode: 78756)
+user2 = User.create(username: 'rachel345', email: "iliketoshop@gmail.com", password_digest: "abc123", image_url: Faker::Avatar.image, city: "Austin", state: "Texas", zipcode: 78756)
+user3 = User.create(username: 'Ross', email: "ross123@hotmail.com", password_digest: "abc123", image_url: Faker::Avatar.image, city: "Austin", state: "Texas", zipcode: 78756)
+User.create(username: 'Charlie', email: "charlie@gmail.com", password_digest: "abc123", image_url: Faker::Avatar.image, city: "Austin", state: "Texas", zipcode: 78756)
+User.create(username: 'Lucy', email: "bluedresses4va@gmail.com", password_digest: "abc123", image_url: Faker::Avatar.image, city: "Austin", state: "Texas", zipcode: 78756)
 
 i1 = Interest.create(name: "Sports", image_url: "https://www.insidescience.org/sites/default/files/130305_Sports_top.jpg")
 i2 = Interest.create(name: "Music", image_url: "https://static.pexels.com/photos/1591/technology-music-sound-things.jpg")
