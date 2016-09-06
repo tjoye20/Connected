@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   resources :users
-  
+  resources :interests
+
   resources :sessions, only: [:new, :create, :destroy]
 
   # we use a foreign key in the conversations table
