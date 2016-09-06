@@ -13,9 +13,9 @@ User.create(username: 'Lucy', email: "bluedresses4va@gmail.com", password_digest
 
 i1 = Interest.create(name: "Sports", image_url: "https://www.insidescience.org/sites/default/files/130305_Sports_top.jpg")
 i2 = Interest.create(name: "Music", image_url: "https://static.pexels.com/photos/1591/technology-music-sound-things.jpg")
-i3 = Interest.create(name: "Food", image_url: "http://graphicgoogle.com/wp-content/uploads/2016/06/Free-Food-Hero-Stock-Photos-2.jpg")
-Interest.create(name: "Fitness", image_url: "http://erichuner.com/wp-content/uploads/2015/02/black-and-white-fitness-pic-121413.jpg")
-Interest.create(name: "Politics", image_url: "http://a.abcnews.com/images/Politics/GTY_capitol_kab_141015_16x9_992.jpg")
+i3 = Interest.create(name: "Food", image_url: "https://format-com-cld-res.cloudinary.com/image/private/s--gDK9kYDW--/c_limit,g_center,h_65535,w_1600/a_auto,fl_keep_iptc.progressive,q_95/226561-11543623-Blackened_Chicken_Emily_Caruso_Photography_1_of_1_jpg.jpg")
+Interest.create(name: "Fitness", image_url: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/3H89EH3WIJ.jpg")
+Interest.create(name: "Politics", image_url: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/RFKY6O3X2G.jpg")
 Interest.create(name: "Books", image_url: "https://obsessivebookworm.files.wordpress.com/2011/01/books.jpg")
 
 user1.interests << i1
