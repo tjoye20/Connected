@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
     @users = User.find(current_user.id)
+    render json: @user
   end
 
   def new
@@ -11,11 +12,12 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to users_path, notice: "Signup successful!"
+      # redirect_to users_path, notice: "Signup successful!"
     else
       @errors = @user.errors.full_messages
-      render :new
+      # render :new
     end
+    render json: @user
   end
 
   def show
