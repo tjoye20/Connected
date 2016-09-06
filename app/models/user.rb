@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
 
   validates_confirmation_of :password_digest
   validates_presence_of :password_digest, :on => :create
-  validates_presence_of :username, :email
+  validates_presence_of :username, :email, :city, :state, :zipcode 
   validates_uniqueness_of :email, :username
 
   has_many :conversations, :foreign_key => :sender_id
