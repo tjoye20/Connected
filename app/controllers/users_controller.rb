@@ -46,8 +46,10 @@ class UsersController < ApplicationController
   end
 
   def search
-    @users = User
-
+    @interest = Interest.find_by(name: params["interest"])
+    @users = @interest.users.where(zipcode: params["zipcode"])
+    p @users
+    render json: @users
   end
 
   private
