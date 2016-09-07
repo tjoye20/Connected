@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  post 'users/search' => "users#search"
   resources :users
   resources :interests
 

@@ -45,6 +45,13 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    @interest = Interest.find_by(name: params["interest"])
+    @users = @interest.users.where(zipcode: params["zipcode"])
+    p @users
+    render json: @users
+  end
+
   private
   def user_params
     params.require(:user).permit(:username, :email, :password)
