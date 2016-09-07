@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.create(email: params["email"], username: params["username"], password: params["password"])
     if @user.save
       session[:user_id] = @user.id
       # redirect_to users_path, notice: "Signup successful!"
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   def update
     if current_user
       @user = User.find(current_user.id)
-      @user.update_attributes(user_params)
+      @user.update_attributes(user_params, password: params["password"])
       redirect_to user_path(@user.id)
     else
       redirect_to new_session_path, alert: "You must be logged in to make this change."
@@ -46,6 +46,6 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email)
   end
 end
