@@ -1,9 +1,15 @@
 class ConversationsController < ApplicationController
-  before_action :authenticate_user
+  # before_action :authenticate_user
 
   def index
-    @users = User.all
-    @conversations = Conversation.all
+    @user = User.find(1)
+    p @user
+    @conversations = Conversation.where(sender_id: @user)
+    p @conversations
+    render json: @conversations
+  end
+
+  def show
   end
 
   def create
