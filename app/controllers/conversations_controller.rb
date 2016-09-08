@@ -8,11 +8,21 @@ class ConversationsController < ApplicationController
     @conversations.each do |conversation|
       conversation_hash[:conversations] << conversation.recipient
     end
-    p conversation_hash
     render json: conversation_hash
   end
 
   def show
+    p params
+    @conversation = Conversation.find(params[:id])
+    # @conversation = Conversation.find_by(sender_id: params["sender_id"], recipient_id: params["recipient_id"])
+    puts "---------------------------------------------------------- "
+    puts "@conversation is:"
+    p @conversation
+    @messages = @conversation.messages
+    puts "---------------------------------------------------------- "
+    puts "@messages is:"
+    p @messages
+    render json: @messages
   end
 
   def create
@@ -21,7 +31,8 @@ class ConversationsController < ApplicationController
     else
       @conversation = Conversation.create!(conversation_params)
     end
-    redirect_to conversation_messages_path(@conversation)
+    Message.create(conversation_id: @conversation.id, body: params[:message], user_id: params[:sender_id], read: true)
+    render json: @conversation
   end
 
   private
