@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   post 'users/search' => "users#search"
+  get 'users/:user_id/messageswith/:recipient_id' => "conversations#find"
   resources :users
   resources :interests
 
