@@ -3,10 +3,13 @@ class ConversationsController < ApplicationController
 
   def index
     @user = User.find(1)
-    p @user
+    conversation_hash = {conversations: []}
     @conversations = Conversation.where(sender_id: @user)
-    p @conversations
-    render json: @conversations
+    @conversations.each do |conversation|
+      conversation_hash[:conversations] << conversation.recipient
+    end
+    p conversation_hash
+    render json: conversation_hash
   end
 
   def show
