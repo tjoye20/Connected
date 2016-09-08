@@ -2,8 +2,17 @@ class ConversationsController < ApplicationController
   # before_action :authenticate_user
 
   def index
-    @users = User.all
-    @conversations = Conversation.all
+    @user = User.find(1)
+    conversation_hash = {conversations: []}
+    @conversations = Conversation.where(sender_id: @user)
+    @conversations.each do |conversation|
+      conversation_hash[:conversations] << conversation.recipient
+    end
+    p conversation_hash
+    render json: conversation_hash
+  end
+
+  def show
   end
 
   def create
