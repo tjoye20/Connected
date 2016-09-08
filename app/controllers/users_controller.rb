@@ -5,7 +5,9 @@ class UsersController < ApplicationController
   #respond_to :json, :html
 
   def index
-    @users = User.all
+    p params
+    @users = User.
+    render json: @users
   end
 
   def new
