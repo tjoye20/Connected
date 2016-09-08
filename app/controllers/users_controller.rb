@@ -5,8 +5,7 @@ class UsersController < ApplicationController
   #respond_to :json, :html
 
   def index
-    @users = User.find(current_user.id)
-    render json: @user
+    @users = User.all
   end
 
   def new
@@ -18,15 +17,15 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = 'Account was successfully created.'
-      redirect_to @user
+      render json: @user
     else
       render :new
     end
   end
 
   def show
-    # @user = User.find(params[:id])
-    # render json: @user
+    @user = User.find(params[:id])
+    render json: @user
   end
 
   def edit
@@ -61,7 +60,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
 
   def logged_in_user
@@ -75,6 +74,6 @@ class UsersController < ApplicationController
   # Confirms the correct user.
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
+    redirect_to(root_path) unless current_user?(@user)
   end
 end
