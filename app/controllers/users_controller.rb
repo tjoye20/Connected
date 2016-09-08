@@ -13,18 +13,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # def create
-  #   @user = User.create(user_params)
-  #   if @user.save
-  #     session[:user_id] = @user.id
-  #     # redirect_to users_path, notice: "Signup successful!"
-  #   else
-  #     @errors = @user.errors.full_messages
-  #     # render :new
-  #   end
-  #   render json: @user
-  # end
-
   def create
     @user = User.new(user_params)
     if @user.save
@@ -48,7 +36,7 @@ class UsersController < ApplicationController
   def update
     if current_user
       @user = User.find(current_user.id)
-      @user.update_attributes(user_params)
+      @user.update_attributes(user_params, password: params["password"])
       redirect_to user_path(@user.id)
     else
       redirect_to new_session_path, alert: "You must be logged in to make this change."
@@ -57,14 +45,13 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(current_user.id)
-    session[:user_id] = nil
+    @user.destroy
     redirect_to root_path
   end
 
   def search
     @interest = Interest.find_by(name: params["interest"])
     @users = @interest.users.where(zipcode: params["zipcode"])
-    # p @users
     render json: @users
   end
 
