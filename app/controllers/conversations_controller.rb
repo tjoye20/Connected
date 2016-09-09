@@ -13,6 +13,9 @@ class ConversationsController < ApplicationController
   end
 
   def show
+    @conversation = Conversation.find(params[:id])
+    @messages = @conversation.messages
+    render json: @messages
   end
 
   def create
@@ -25,8 +28,6 @@ class ConversationsController < ApplicationController
     Message.create(conversation_id: @conversation.id, body: params[:message], user_id: params[:sender_id], read: true)
 
     render json: @conversation
-
-    # redirect_to conversation_messages_path(@conversation)
   end
 
   private
