@@ -4,7 +4,7 @@ class ConversationsController < ApplicationController
   def index
     @user = User.find(session[:user_id])
     conversation_hash = {conversations: []}
-    @conversations = Conversation.where(sender_id: @user)
+    @conversations = Conversation.where(sender_id: @user.id)
     @conversations.each do |conversation|
       conversation_hash[:conversations] << conversation.recipient
     end

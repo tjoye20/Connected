@@ -7,7 +7,8 @@ class InterestsController < ApplicationController
 
   def create
     @interest = Interest.find_by(name: params["interest"]["name"])
-    @users = @interest.users
+
+    @users = @interest.users.where.not(id: session[:user_id])
     render json: @users
   end
 
