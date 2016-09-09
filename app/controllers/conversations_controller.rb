@@ -4,11 +4,11 @@ class ConversationsController < ApplicationController
   def index
     @user = User.find(session[:user_id])
     conversation_hash = {conversations: []}
-    @conversations = Conversation.where(sender_id: @user)
+    @conversations = Conversation.where(sender_id: @user.id)
     @conversations.each do |conversation|
       conversation_hash[:conversations] << conversation.recipient
     end
-    p conversation_hash
+
     render json: conversation_hash
   end
 
@@ -26,7 +26,7 @@ class ConversationsController < ApplicationController
     else
       @conversation = Conversation.create(sender_id: @user.id, recipient_id: @recipient.id)
     end
-    p @conversation.messages
+
     render json: @conversation.messages
   end
 
@@ -34,11 +34,7 @@ class ConversationsController < ApplicationController
     @user = User.find(params[:sender_id])
     @recipient = User.find(params[:recipient_id])
     @conversation = Conversation.between(params[:sender_id], params[:recipient_id]).first
-    # if Conversation.between(params[:sender_id],params[:recipient_id]).present?
-    #   @conversation = Conversation.between(params[:sender_id], params[:recipient_id]).first
-    # else
-    #   @conversation = Conversation.create!(conversation_params)
-    # end
+
     Message.create(conversation_id: @conversation.id, body: params[:message], user_id: params[:sender_id], read: true)
 
     render json: @conversation
