@@ -5,50 +5,39 @@ class UsersController < ApplicationController
   #respond_to :json, :html
 
   def index
-    @users = User.find(current_user.id)
-    render json: @user
+    p params
+    @users = User.all
+    render json: @users
   end
 
   def new
     @user = User.new
   end
 
-  # def create
-  #   @user = User.create(user_params)
-  #   if @user.save
-  #     session[:user_id] = @user.id
-  #     # redirect_to users_path, notice: "Signup successful!"
-  #   else
-  #     @errors = @user.errors.full_messages
-  #     # render :new
-  #   end
-  #   render json: @user
-  # end
-
   def create
     @user = User.new(user_params)
     if @user.save
       log_in @user
       flash[:success] = 'Account was successfully created.'
-      redirect_to @user
+      render json: @user
     else
       render :new
     end
   end
 
   def show
-    # @user = User.find(params[:id])
-    # render json: @user
+    @user = User.find(params[:id])
+    render json: @user
   end
 
   def edit
-    # @user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def update
     if current_user
       @user = User.find(current_user.id)
-      @user.update_attributes(user_params)
+      @user.update_attributes(user_params, password: params["password"])
       redirect_to user_path(@user.id)
     else
       redirect_to new_session_path, alert: "You must be logged in to make this change."
@@ -57,14 +46,14 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(current_user.id)
-    session[:user_id] = nil
+    @user.destroy
     redirect_to root_path
   end
 
   def search
+    @user = User.find(session[:user_id])
     @interest = Interest.find_by(name: params["interest"])
     @users = @interest.users.where(zipcode: params["zipcode"])
-    # p @users
     render json: @users
   end
 
@@ -74,7 +63,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
 
   def logged_in_user
@@ -88,6 +77,6 @@ class UsersController < ApplicationController
   # Confirms the correct user.
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
+    redirect_to(root_path) unless current_user?(@user)
   end
 end

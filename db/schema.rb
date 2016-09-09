@@ -57,7 +57,14 @@ ActiveRecord::Schema.define(version: 20160908220130) do
     t.string   "state"
     t.integer  "zipcode"
     t.string   "bio"
+<<<<<<< HEAD
     t.string   "image_url",       default: "https://www.myzydeco.com/assets/blank_user_icon.png"
+=======
+    t.string   "access_token"
+    t.string   "remember_digest"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
+>>>>>>> master
   end
 
 end
