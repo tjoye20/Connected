@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def index
     p params
-    @users = User.
+    @users = User.all
     render json: @users
   end
 
@@ -51,6 +51,7 @@ class UsersController < ApplicationController
   end
 
   def search
+    @user = User.find(session[:user_id])
     @interest = Interest.find_by(name: params["interest"])
     @users = @interest.users.where(zipcode: params["zipcode"])
     render json: @users
