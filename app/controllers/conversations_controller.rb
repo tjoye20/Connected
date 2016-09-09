@@ -2,7 +2,7 @@ class ConversationsController < ApplicationController
   # before_action :authenticate_user
 
   def index
-    @user = User.find(1)
+    @user = User.find(session[:user_id])
     conversation_hash = {conversations: []}
     @conversations = Conversation.where(sender_id: @user)
     @conversations.each do |conversation|
@@ -13,20 +13,35 @@ class ConversationsController < ApplicationController
   end
 
   def show
+    @conversation = Conversation.find(params[:id])
+    @messages = @conversation.messages
+    render json: @messages
+  end
+
+  def find
+    @user = User.find(params[:user_id])
+    @recipient = User.find(params[:recipient_id])
+    if Conversation.between(@user, @recipient).first
+      @conversation = Conversation.between(@user, @recipient).first
+    else
+      @conversation = Conversation.create(sender_id: @user.id, recipient_id: @recipient.id)
+    end
+    p @conversation.messages
+    render json: @conversation.messages
   end
 
   def create
-    message = params[:message]
-    if Conversation.between(params[:sender_id],params[:recipient_id]).present?
-      @conversation = Conversation.between(params[:sender_id], params[:recipient_id]).first
-    else
-      @conversation = Conversation.create!(conversation_params)
-    end
+    @user = User.find(params[:sender_id])
+    @recipient = User.find(params[:recipient_id])
+    @conversation = Conversation.between(params[:sender_id], params[:recipient_id]).first
+    # if Conversation.between(params[:sender_id],params[:recipient_id]).present?
+    #   @conversation = Conversation.between(params[:sender_id], params[:recipient_id]).first
+    # else
+    #   @conversation = Conversation.create!(conversation_params)
+    # end
     Message.create(conversation_id: @conversation.id, body: params[:message], user_id: params[:sender_id], read: true)
 
     render json: @conversation
-
-    # redirect_to conversation_messages_path(@conversation)
   end
 
   private
