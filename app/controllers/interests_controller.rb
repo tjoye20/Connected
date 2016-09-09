@@ -6,8 +6,10 @@ class InterestsController < ApplicationController
   end
 
   def create
+    @user = User.find(session[:user_id])
+    p @user.zipcode
     @interest = Interest.find_by(name: params["interest"]["name"])
-    @users = @interest.users
+    @users = @interest.users.where(zipcode: @user.zipcode )
     render json: @users
   end
 
