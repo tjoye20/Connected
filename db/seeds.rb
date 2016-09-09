@@ -12,6 +12,9 @@ user2 = User.create(username: 'Rachel Smith', email: "iliketoshop@gmail.com", pa
 user3 = User.create(username: 'Ross Geller', email: "ross123@hotmail.com", password: "abc123",password_confirmation: "abc123", image_url: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/TRJ61FPYW5.jpg", bio: bios.sample, city: "Austin", state: "Texas", zipcode: 78756)
 user4 = User.create(username: 'Charlie Day', email: "charlie@gmail.com", password: "abc123",password_confirmation: "abc123", image_url: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/EOG6UD4Z29.jpg", bio: bios.sample, city: "Austin", state: "Texas", zipcode: 78756)
 user5 = User.create(username: 'Lucy McDonald', email: "bluedresses4va@gmail.com", password: "abc123",password_confirmation: "abc123", image_url: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/UPONI5PK8M.jpg", bio: bios.sample, city: "Austin", state: "Texas", zipcode: 78756)
+user6 = User.create(username: 'Tommy Brady', email: "champ@gmail.com", password: "abc123",password_confirmation: "abc123", image_url: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/FB2D66688C.jpg", bio: bios.sample, city: "Hudson", state: "NH", zipcode: 03051)
+user7 = User.create(username: 'Eric Bachman', email: "aviato@gmail.com", password: "abc123",password_confirmation: "abc123", image_url: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/TBBWMZOE4W.jpg", bio: bios.sample, city: "Hudson", state: "NH", zipcode: 03051)
+user8 = User.create(username: 'Leslie Knope', email: "parks@hotmail.com", password: "abc123",password_confirmation: "abc123", image_url: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/4D181PL4BO.jpg", bio: bios.sample, city: "Hudson", state: "NH", zipcode: 03051)
 
 i1 = Interest.create(name: "Sports", image_url: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/M5VXQW4ZLG.jpg")
 i2 = Interest.create(name: "Music", image_url: "https://snap-photos.s3.amazonaws.com/img-thumbs/960w/KNC6B45VG3.jpg")
@@ -40,6 +43,19 @@ user5.interests << i1
 user5.interests << i4
 user5.interests << i2
 user5.interests << i3
+
+user6.interests << i3
+user6.interests << i1
+user6.interests << i2
+user6.interests << i5
+
+user7.interests << i3
+user7.interests << i1
+
+user8.interests << i3
+user8.interests << i1
+user8.interests << i2
+user8.interests << i4
 
 convo1 = Conversation.create(sender_id: user1.id, recipient_id: user2.id)
 message1 = Message.create(conversation_id: convo1.id, body: "Hey, wassup?", user_id: user1.id, read: true)
