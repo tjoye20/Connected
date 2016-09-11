@@ -1,10 +1,10 @@
 # Connected
 
-Connected is React Native-Rails API project that helps you find people in your city with the same interests as you.
+Connected is a React Native-Rails API project that helps you find people in your city with the same interests as you.
 
 ### Project Description
 
-This was our group final project for Dev Bootcamp. We decided to choose a simple app idea, so we could focus on learning React Native and figuring out how to implement it with a Rails API.
+This was our final group project for Dev Bootcamp. We decided to choose a simple app idea, so we could focus on learning React Native and figuring out how to implement it with a Rails API.
 
 Click here for the [React Native Repo](https://github.com/SeanWitt/ReactNative_Connected)
 ### Installation
