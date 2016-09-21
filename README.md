@@ -11,6 +11,8 @@ Click here for the [React Native Repo](https://github.com/SeanWitt/ReactNative_C
 
 Note: This repo only contains the Rails backend.
 
+Update 9/21/16: This Rails backend application is now deployed online through Heroku.  It is no longer necessary to clone this repo down to your local machine. Follow the steps below however if you do wish to run locally.
+
 To install the app to your local computer run
 
     git clone https://github.com/tjoye20/Connected.git
